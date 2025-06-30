@@ -25,21 +25,10 @@ Designed for modern devices with smooth animations via **Framer Motion**, this p
 
 ---
 
-## 🚀 Getting Started
-
-```bash
-git clone https://github.com/YusufBolden/ip-address-tracker.git
-cd ip-address-tracker
-npm install
-npm run dev
+## 🚢 Live Deployment
 
 
----
-
-🚢 Live Deployment
-
-
-🚀 Local Setup & Tailwind CSS Installation
+## 🚀 Local Setup & Tailwind CSS Installation
 
 To set up and run this project locally with Tailwind CSS and Vite:
 
