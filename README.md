@@ -1,8 +1,6 @@
 # 🛰️ IP Address Tracker
 
-IP Address Tracker is a sleek, responsive web application built with **React**, **TypeScript**, and **Context API**.  
-It integrates the **IPify Geolocation API** to fetch IP address details and displays them dynamically on an interactive **Leaflet map**.  
-Designed for modern devices with smooth animations via **Framer Motion**, this project prioritizes simplicity, scalability, and accessibility.
+IP Address Tracker is a responsive web application built with **React**, **TypeScript**, and **Context API**. It integrates the **IPify Geolocation API** to fetch IP address details and displays them dynamically on an interactive **Leaflet map**.  Designed for modern devices with smooth animations via **Framer Motion**.
 
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
@@ -26,7 +24,7 @@ Designed for modern devices with smooth animations via **Framer Motion**, this p
 ---
 
 ## 🚢 Live Deployment
-
+Coming soon..
 
 ## 🚀 Local Setup & Tailwind CSS Installation
 
