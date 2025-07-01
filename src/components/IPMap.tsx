@@ -10,7 +10,8 @@ const FlyToMarker = ({ position }: { position: LatLngExpression }) => {
 
   useEffect(() => {
     map.flyTo(position, 13, {
-      duration: 2
+      duration: 3,
+      easeLinearity: 0.1
     })
   }, [map, position])
 
@@ -30,8 +31,16 @@ const IPMap = () => {
   ]
 
   const icon = L.divIcon({
-    html: `<div style="background:#FFB703;width:16px;height:16px;border-radius:50%;box-shadow:0 0 8px #ffffff;"></div>`,
-    className: ''
+    html: `
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="#FF4136" stroke="white" stroke-width="1.5">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+        <circle cx="12" cy="9" r="2.5" fill="white"/>
+      </svg>
+    `,
+    className: '',
+    iconSize: [48, 48],
+    iconAnchor: [24, 48],
+    popupAnchor: [0, -48]
   })
 
   return (
