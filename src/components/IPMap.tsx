@@ -1,8 +1,21 @@
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
 import { useIP } from '../context/useIP'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import type { LatLngExpression } from 'leaflet'
+import { useEffect } from 'react'
+
+const FlyToMarker = ({ position }: { position: LatLngExpression }) => {
+  const map = useMap()
+
+  useEffect(() => {
+    map.flyTo(position, 13, {
+      duration: 2
+    })
+  }, [map, position])
+
+  return null
+}
 
 const IPMap = () => {
   const { ipData } = useIP()
@@ -17,7 +30,7 @@ const IPMap = () => {
   ]
 
   const icon = L.divIcon({
-    html: `<div style="background:#5BC0EB;width:14px;height:14px;border-radius:50%;box-shadow:0 0 6px #9BC53D;"></div>`,
+    html: `<div style="background:#FFB703;width:16px;height:16px;border-radius:50%;box-shadow:0 0 8px #ffffff;"></div>`,
     className: ''
   })
 
@@ -26,6 +39,7 @@ const IPMap = () => {
       <MapContainer
         center={position}
         zoom={13}
+        scrollWheelZoom
         style={{ height: '100%', width: '100%' }}
       >
         <TileLayer
@@ -37,6 +51,7 @@ const IPMap = () => {
             {ipData.location.city}, {ipData.location.country}
           </Popup>
         </Marker>
+        <FlyToMarker position={position} />
       </MapContainer>
     </div>
   )
