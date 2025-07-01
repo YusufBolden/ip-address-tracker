@@ -12,19 +12,27 @@ const HomePage = () => {
   const fetchIPData = useCallback(async (query: string) => {
     try {
       setLoading(true)
-      const response = await fetch(
-        `https://geo.ipify.org/api/v2/country,city?apiKey=${import.meta.env.VITE_IPIFY_API_KEY}&ipAddress=${query}`
-      )
+      const url = query.trim()
+        ? `http://ip-api.com/json/${query}`
+        : `http://ip-api.com/json/`
+
+      const response = await fetch(url)
       const data = await response.json()
+
+      if (!data.city) {
+        console.error('API returned incomplete data:', data)
+        return
+      }
+
       setIPData({
-        ip: data.ip,
+        ip: data.query,
         location: {
-          city: data.location.city,
-          region: data.location.region,
-          country: data.location.country,
-          timezone: data.location.timezone,
-          lat: data.location.lat,
-          lng: data.location.lng,
+          city: data.city,
+          region: data.regionName,
+          country: data.country,
+          timezone: data.timezone,
+          lat: data.lat,
+          lng: data.lon,
         },
         isp: data.isp,
       })
