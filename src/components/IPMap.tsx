@@ -9,6 +9,10 @@ const FlyToMarker = ({ position }: { position: LatLngExpression }) => {
   const map = useMap()
 
   useEffect(() => {
+    setTimeout(() => {
+      map.invalidateSize()
+    }, 100)
+
     map.flyTo(position, 13, {
       duration: 3,
       easeLinearity: 0.1
@@ -21,7 +25,11 @@ const FlyToMarker = ({ position }: { position: LatLngExpression }) => {
 const IPMap = () => {
   const { ipData } = useIP()
 
-  if (!ipData) {
+  if (
+    !ipData ||
+    ipData.location.lat === undefined ||
+    ipData.location.lng === undefined
+  ) {
     return null
   }
 

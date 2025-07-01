@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 
 const haversineDistance = (lat1: number, lon1: number, lat2: number, lon2: number) => {
   const toRad = (value: number) => (value * Math.PI) / 180
-  const R = 6371 // radius of Earth in km
+  const R = 6371
   const dLat = toRad(lat2 - lat1)
   const dLon = toRad(lon2 - lon1)
   const a =
@@ -48,14 +48,19 @@ const IPDetails = () => {
   return (
     <div className="bg-[#0B132B]/70 backdrop-blur-md shadow-xl rounded-lg p-6 mt-6 w-full max-w-2xl border border-[#9BC53D]/40 hover:scale-105 transition">
       <p><span className="font-semibold text-[#5BC0EB]">IP:</span> {ipData.ip}</p>
-      <p><span className="font-semibold text-[#5BC0EB]">Location:</span> {ipData.location.city}, {ipData.location.region}, {ipData.location.country}</p>
+      <p><span className="font-semibold text-[#5BC0EB]">Continent:</span> {ipData.location.continent}</p>
+      <p><span className="font-semibold text-[#5BC0EB]">Company:</span> {ipData.isp || 'N/A'}</p>
+      <p><span className="font-semibold text-[#5BC0EB]">Address:</span> {ipData.location.city}, {ipData.location.region} {ipData.location.postal}, {ipData.location.country}</p>
       <p><span className="font-semibold text-[#5BC0EB]">Timezone:</span> UTC {ipData.location.timezone}</p>
-      <p><span className="font-semibold text-[#5BC0EB]">ISP:</span> {ipData.isp || 'N/A'}</p>
       {distance !== null && (
-        <p>
-          <span className="font-semibold text-[#5BC0EB]">Approx. Distance: </span>
-          {distance.mi.toFixed(1)} mi ({distance.km.toFixed(1)} km) from you
-        </p>
+        <p><span className="font-semibold text-[#5BC0EB]">Approx. Distance: </span> 
+        {distance.mi.toFixed(1)} mi ({distance.km.toFixed(1)} km) from your location</p>
+      )}
+      {ipData.location.asn && (
+        <p><span className="font-semibold text-[#5BC0EB]">ASN:</span> {ipData.location.asn}</p>
+      )}
+      {ipData.location.domain && (
+        <p><span className="font-semibold text-[#5BC0EB]">Domain:</span> {ipData.location.domain}</p>
       )}
     </div>
   )

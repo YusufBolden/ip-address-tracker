@@ -13,28 +13,32 @@ const HomePage = () => {
     try {
       setLoading(true)
       const url = query.trim()
-        ? `http://ip-api.com/json/${query}`
-        : `http://ip-api.com/json/`
+        ? `https://api.ipgeolocation.io/ipgeo?apiKey=${import.meta.env.VITE_IP_GEO_KEY}&ip=${query}`
+        : `https://api.ipgeolocation.io/ipgeo?apiKey=${import.meta.env.VITE_IP_GEO_KEY}`
 
       const response = await fetch(url)
       const data = await response.json()
 
-      if (!data.city) {
+      if (!data.city || !data.latitude || !data.longitude) {
         console.error('API returned incomplete data:', data)
         return
       }
 
       setIPData({
-        ip: data.query,
+        ip: data.ip,
         location: {
+          continent: data.continent_name,
           city: data.city,
-          region: data.regionName,
-          country: data.country,
-          timezone: data.timezone,
-          lat: data.lat,
-          lng: data.lon,
+          region: data.state_prov,
+          country: data.country_name,
+          postal: data.zipcode || '',
+          timezone: data.time_zone.name,
+          lat: parseFloat(data.latitude),
+          lng: parseFloat(data.longitude),
+          asn: data.asn || '',
+          domain: data.organization || ''
         },
-        isp: data.isp,
+        isp: data.isp || data.organization || 'N/A'
       })
     } catch (err) {
       console.error('Failed to fetch IP data:', err)
@@ -46,6 +50,8 @@ const HomePage = () => {
   useEffect(() => {
     fetchIPData('')
   }, [fetchIPData])
+
+  console.log('IP Data:', ipData)
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-start p-4 bg-[#0B132B] text-[#E7D3AD]">
