@@ -34,7 +34,7 @@ To set up and run this project locally with Tailwind CSS and Vite:
 
 ```bash
 git clone https://github.com/YusufBolden/ip-address-tracker.git
-cd plume-space-app
+cd ip-address-tracker
 ```
 
 2. **Install project dependencies**
