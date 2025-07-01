@@ -1,7 +1,45 @@
 import { useIP } from '../context/useIP'
+import { useEffect, useState } from 'react'
+
+const haversineDistance = (lat1: number, lon1: number, lat2: number, lon2: number) => {
+  const toRad = (value: number) => (value * Math.PI) / 180
+  const R = 6371 // radius of Earth in km
+  const dLat = toRad(lat2 - lat1)
+  const dLon = toRad(lon2 - lon1)
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+    Math.sin(dLon / 2) ** 2
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+  return R * c
+}
 
 const IPDetails = () => {
   const { ipData } = useIP()
+  const [distance, setDistance] = useState<{ km: number, mi: number } | null>(null)
+
+  useEffect(() => {
+    if (ipData) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const userLat = pos.coords.latitude
+          const userLon = pos.coords.longitude
+          const km = haversineDistance(
+            userLat,
+            userLon,
+            ipData.location.lat,
+            ipData.location.lng
+          )
+          const mi = km * 0.621371
+          setDistance({ km, mi })
+        },
+        (err) => {
+          console.error('Geolocation error:', err)
+          setDistance(null)
+        }
+      )
+    }
+  }, [ipData])
 
   if (!ipData) {
     return <p className="mt-4 text-[#E7D3AD]/80">No data loaded.</p>
@@ -13,6 +51,12 @@ const IPDetails = () => {
       <p><span className="font-semibold text-[#5BC0EB]">Location:</span> {ipData.location.city}, {ipData.location.region}, {ipData.location.country}</p>
       <p><span className="font-semibold text-[#5BC0EB]">Timezone:</span> UTC {ipData.location.timezone}</p>
       <p><span className="font-semibold text-[#5BC0EB]">ISP:</span> {ipData.isp || 'N/A'}</p>
+      {distance !== null && (
+        <p>
+          <span className="font-semibold text-[#5BC0EB]">Approx. Distance: </span>
+          {distance.mi.toFixed(1)} mi ({distance.km.toFixed(1)} km) from you
+        </p>
+      )}
     </div>
   )
 }
