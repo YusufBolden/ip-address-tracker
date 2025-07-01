@@ -101,6 +101,8 @@ ip-address-tracker/
     ├── context/
     │   ├── IPContext.tsx
     │   └── useIP.ts
+    ├── hooks/
+    │   └── useLocalStorage.ts
     └── types/
         └── index.ts
 ```
