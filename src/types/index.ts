@@ -21,3 +21,7 @@ export type IPContextType = {
   ipData: IPData | null
   setIPData: (data: IPData) => void
 }
+
+export type IPFormProps = {
+  onSearch: (query: string) => void
+}
