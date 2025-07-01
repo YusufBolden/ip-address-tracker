@@ -16,7 +16,7 @@ const IPMap = () => {
   ]
 
   return (
-    <div className="w-full h-96 mt-6 rounded overflow-hidden">
+    <div className="w-full h-96 mt-6 rounded overflow-hidden max-w-4xl">
       <MapContainer
         center={position}
         zoom={13}
