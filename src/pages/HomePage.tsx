@@ -1,11 +1,12 @@
 import { useEffect, useCallback, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import IPForm from '../components/IPForm'
 import IPDetails from '../components/IPDetails'
 import IPMap from '../components/IPMap'
 import { useIP } from '../context/useIP'
 
 const HomePage = () => {
-  const { setIPData } = useIP()
+  const { setIPData, ipData } = useIP()
   const [loading, setLoading] = useState(false)
 
   const fetchIPData = useCallback(async (query: string) => {
@@ -44,14 +45,22 @@ const HomePage = () => {
         IP Address Tracker
       </h1>
       <IPForm onSearch={fetchIPData} />
-      {loading ? (
+      {loading && (
         <p className="mt-6 text-blue-600 font-medium">Loading...</p>
-      ) : (
-        <>
-          <IPDetails />
-          <IPMap />
-        </>
       )}
+      <AnimatePresence>
+        {!loading && ipData && (
+          <motion.div
+            className="w-full flex flex-col items-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <IPDetails />
+            <IPMap />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
