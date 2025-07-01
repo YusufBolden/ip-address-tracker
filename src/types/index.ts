@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react'
+
 export type IPData = {
   ip: string
   location: {
@@ -9,4 +11,13 @@ export type IPData = {
     lng: number
   }
   isp: string
+}
+
+export type IPProviderProps = {
+  children: ReactNode
+}
+
+export type IPContextType = {
+  ipData: IPData | null
+  setIPData: (data: IPData) => void
 }
