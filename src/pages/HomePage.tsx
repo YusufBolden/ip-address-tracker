@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react'
+import { useEffect, useCallback, useState } from 'react'
 import IPForm from '../components/IPForm'
 import IPDetails from '../components/IPDetails'
 import IPMap from '../components/IPMap'
@@ -6,11 +6,13 @@ import { useIP } from '../context/useIP'
 
 const HomePage = () => {
   const { setIPData } = useIP()
+  const [loading, setLoading] = useState(false)
 
   const fetchIPData = useCallback(async (query: string) => {
     try {
+      setLoading(true)
       const response = await fetch(
-        `https://geo.ipify.org/api/v2/country,city?apiKey=YOUR_API_KEY&ipAddress=${query}`
+        `https://geo.ipify.org/api/v2/country,city?apiKey=${import.meta.env.VITE_IPIFY_API_KEY}&ipAddress=${query}`
       )
       const data = await response.json()
       setIPData({
@@ -27,6 +29,8 @@ const HomePage = () => {
       })
     } catch (err) {
       console.error('Failed to fetch IP data:', err)
+    } finally {
+      setLoading(false)
     }
   }, [setIPData])
 
@@ -40,8 +44,14 @@ const HomePage = () => {
         IP Address Tracker
       </h1>
       <IPForm onSearch={fetchIPData} />
-      <IPDetails />
-      <IPMap />
+      {loading ? (
+        <p className="mt-6 text-blue-600 font-medium">Loading...</p>
+      ) : (
+        <>
+          <IPDetails />
+          <IPMap />
+        </>
+      )}
     </div>
   )
 }
