@@ -93,7 +93,7 @@ ip-address-tracker/
     ├── main.tsx
     ├── App.tsx
     ├── pages/
-    │   └── Home.tsx
+    │   └── HomePage.tsx
     ├── components/
     │   ├── IPForm.tsx
     │   ├── IPDetails.tsx
