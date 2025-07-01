@@ -84,14 +84,14 @@ ip-address-tracker/
 ├── index.html
 ├── package.json
 ├── tsconfig.json
+├── tsconfig.node.json
 ├── tailwind.config.ts
 ├── vite.config.ts
 ├── README.md
+├── index.css
 └── src/
     ├── main.tsx
     ├── App.tsx
-    ├── styles/
-    │   └── index.css
     ├── pages/
     │   └── Home.tsx
     ├── components/
