@@ -32,19 +32,19 @@ const IPForm = ({ onSearch }: IPFormProps) => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Search IP or domain"
-          className="flex-1 px-4 py-2 border rounded shadow focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+          className="flex-1 px-4 py-2 border border-[#E7D3AD]/30 bg-[#0B132B] text-[#E7D3AD] rounded shadow focus:outline-none focus:ring-2 focus:ring-[#9BC53D] transition"
           aria-invalid={!!error}
           aria-describedby="ip-error"
         />
         <button
           type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+          className="bg-gradient-to-r from-[#9BC53D] to-[#5BC0EB] hover:from-[#5BC0EB] hover:to-[#9BC53D] text-[#0B132B] font-bold px-4 py-2 rounded transition"
         >
           Search
         </button>
       </form>
       {error && (
-        <p id="ip-error" className="text-red-600 text-sm">
+        <p id="ip-error" className="text-[#E7D3AD] text-sm">
           {error}
         </p>
       )}

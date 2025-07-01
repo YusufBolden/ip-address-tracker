@@ -40,13 +40,13 @@ const HomePage = () => {
   }, [fetchIPData])
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-start p-4 bg-gray-50">
-      <h1 className="text-2xl font-bold text-gray-800 my-6">
+    <div className="min-h-screen flex flex-col items-center justify-start p-4 bg-[#0B132B] text-[#E7D3AD]">
+      <h1 className="text-3xl font-extrabold text-[#5BC0EB] my-6 tracking-wide">
         IP Address Tracker
       </h1>
       <IPForm onSearch={fetchIPData} />
       {loading && (
-        <p className="mt-6 text-blue-600 font-medium">Loading...</p>
+        <p className="mt-6 text-[#5BC0EB] font-medium animate-pulse">Loading...</p>
       )}
       <AnimatePresence>
         {!loading && ipData && (
