@@ -55,7 +55,19 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-start p-4 bg-[#0B132B] text-[#E7D3AD]">
-      <h1 className="text-3xl font-extrabold text-[#5BC0EB] my-6 tracking-wide">
+      <h1 className="text-3xl font-extrabold text-[#5BC0EB] my-6 tracking-wide flex items-center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 100 100"
+          className="w-10 h-10 mr-3"
+        >
+          <circle cx="50" cy="50" r="50" fill="#5BC0EB" />
+          <path
+            d="M50 20c-10 0-18 8-18 18 0 13 18 35 18 35s18-22 18-35c0-10-8-18-18-18z"
+            fill="#FF4136"
+          />
+          <circle cx="50" cy="38" r="6" fill="#E7D3AD" />
+        </svg>
         IP Address Tracker
       </h1>
       <IPForm onSearch={fetchIPData} />
