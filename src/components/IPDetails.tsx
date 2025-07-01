@@ -4,15 +4,15 @@ const IPDetails = () => {
   const { ipData } = useIP()
 
   if (!ipData) {
-    return <p className="mt-4 text-gray-600">No data loaded.</p>
+    return <p className="mt-4 text-[#E7D3AD]/80">No data loaded.</p>
   }
 
   return (
-    <div className="bg-white shadow rounded p-4 mt-6 w-full max-w-2xl transition hover:shadow-lg">
-      <p><strong>IP:</strong> {ipData.ip}</p>
-      <p><strong>Location:</strong> {ipData.location.city}, {ipData.location.region}, {ipData.location.country}</p>
-      <p><strong>Timezone:</strong> UTC {ipData.location.timezone}</p>
-      <p><strong>ISP:</strong> {ipData.isp}</p>
+    <div className="bg-[#0B132B]/70 backdrop-blur-md shadow-xl rounded-lg p-6 mt-6 w-full max-w-2xl border border-[#9BC53D]/40 hover:scale-105 transition">
+      <p><span className="font-semibold text-[#5BC0EB]">IP:</span> {ipData.ip}</p>
+      <p><span className="font-semibold text-[#5BC0EB]">Location:</span> {ipData.location.city}, {ipData.location.region}, {ipData.location.country}</p>
+      <p><span className="font-semibold text-[#5BC0EB]">Timezone:</span> UTC {ipData.location.timezone}</p>
+      <p><span className="font-semibold text-[#5BC0EB]">ISP:</span> {ipData.isp || 'N/A'}</p>
     </div>
   )
 }
