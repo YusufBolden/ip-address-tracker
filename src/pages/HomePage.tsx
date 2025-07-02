@@ -8,19 +8,28 @@ import { useIP } from '../context/useIP'
 const HomePage = () => {
   const { setIPData, ipData } = useIP()
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const fetchIPData = useCallback(async (query: string) => {
     try {
       setLoading(true)
+      setError('') // clear any previous
       const url = query.trim()
         ? `https://api.ipgeolocation.io/ipgeo?apiKey=${import.meta.env.VITE_IP_GEO_KEY}&ip=${query}`
         : `https://api.ipgeolocation.io/ipgeo?apiKey=${import.meta.env.VITE_IP_GEO_KEY}`
 
       const response = await fetch(url)
+      if (!response.ok) {
+        console.error('Network response was not ok', response.status, response.statusText)
+        setError(`Network error: ${response.status}`)
+        return
+      }
+
       const data = await response.json()
 
       if (!data.city || !data.latitude || !data.longitude) {
         console.error('API returned incomplete data:', data)
+        setError('Data incomplete from API. Please try a different query.')
         return
       }
 
@@ -42,6 +51,7 @@ const HomePage = () => {
       })
     } catch (err) {
       console.error('Failed to fetch IP data:', err)
+      setError('Failed to load IP data. Please check your network or try later.')
     } finally {
       setLoading(false)
     }
@@ -70,12 +80,28 @@ const HomePage = () => {
         </svg>
         IP Address Tracker
       </h1>
+
+      {error && (
+        <div className="relative bg-[#FF4136]/20 text-[#FF4136] p-4 rounded max-w-md w-full text-center mb-4 border border-[#FF4136]/30">
+          ❌ {error}
+          <button
+            onClick={() => setError('')}
+            className="absolute top-1 right-2 text-[#FF4136] hover:text-[#FF4136]/80 text-xl"
+            aria-label="Close alert"
+          >
+            ×
+          </button>
+        </div>
+      )}
+
       <IPForm onSearch={fetchIPData} />
+
       {loading && (
         <p className="mt-6 text-[#5BC0EB] font-medium animate-pulse">Loading...</p>
       )}
+
       <AnimatePresence>
-        {!loading && ipData && (
+        {!loading && ipData && !error && (
           <motion.div
             className="w-full flex flex-col items-center"
             initial={{ opacity: 0 }}
