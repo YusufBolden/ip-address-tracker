@@ -69,8 +69,13 @@ export default defineConfig({
 /* src/index.css */
 @import "tailwindcss";
 ```
+6. **Create a `.env`:**
 
-6. **Start the dev server**
+```
+VITE_IP_GEO_KEY=your_api_key_here
+```
+
+7. **Start the dev server**
 
 ```
 npm run dev
@@ -89,6 +94,11 @@ ip-address-tracker/
 ├── vite.config.ts
 ├── README.md
 ├── index.css
+├── public/
+│   ├── favicon.png
+│   ├── screenshot.png
+│   ├── screenshot.png
+│   ├── screenshot.png
 └── src/
     ├── main.tsx
     ├── App.tsx
@@ -121,6 +131,40 @@ ip-address-tracker/
 
 ### Admin Dashboard - lower
 ![Admin - lower](public/assets/adminLower.png) -->
+
+---
+
+## 📝 Reflection Document
+
+This project pushed me to balance visual appeal with technical precision. From the outset, I prioritized designing a fluid, intuitive user experience using Tailwind CSS for rapid styling and Framer Motion to add subtle, lively transitions. Structuring state was critical; leveraging Context API kept the IP data easily accessible across deeply nested components without prop drilling, improving maintainability.
+
+A significant challenge was reconciling inconsistent data models across IP geolocation APIs. Each provider returned unique structures, with some omitting key fields like ASN or even latitude/longitude under certain conditions. This meant carefully designing defensive code to verify data before updating state, ensuring the map never received invalid coordinates. Implementing error boundaries, complete with user-dismissible alerts, was a direct outcome of this, keeping the interface robust even when APIs failed.
+
+Another subtle hurdle was achieving both accessibility and aesthetic balance. Tailwind made responsive design straightforward, but fine-tuning focus rings and ARIA labels to maintain WCAG accessibility while also staying visually minimal took careful iteration. I also spent time refining hover states so they felt engaging but not overly playful for a utility-style tracker.
+
+As the build matured, attention shifted to micro-interactions and polish easing curves in Framer Motion, matching the map pin and favicon colors for thematic cohesion, and ensuring dismissible errors didn’t disrupt animations. If I were to evolve this project further, I’d implement a theme toggle with persistent local storage to honor user preferences, and potentially integrate a street-level imagery view for richer context. Overall, this project solidified my end-to-end process from data fetching to animation, reinforcing a focus on graceful degradation and seamless UX.
+
+## 🐞 Common Errors & Resolutions
+
+1. API returned incomplete data
+
+  - Ensured API selected was ipgeolocation.io and checked JSON for missing fields.
+
+2. Invalid LatLng object
+
+  - Added guards to prevent Leaflet from rendering if latitude or longitude were undefined.
+
+3. 429 Too Many Requests
+
+  - Added alert UI to inform the user and let them try again later.
+
+4. Favicon background clash
+
+  - Iterated custom vector design to match the app color palette and remove unexpected backgrounds.
+
+5. Subtle hover effects felt weak
+
+  - Enhanced with more dramatic scaling and transition durations.
 
 ---
 
