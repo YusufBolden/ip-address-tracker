@@ -94,31 +94,42 @@ ip-address-tracker/
 ├── vite.config.ts
 ├── README.md
 ├── index.css
+├── .env
 ├── public/
 │   ├── favicon.png
 │   ├── screenshot.png
-│   ├── screenshot.png
-│   ├── screenshot.png
-└── src/
-    ├── main.tsx
-    ├── App.tsx
-    ├── pages/
-    │   └── HomePage.tsx
-    ├── components/
-    │   ├── IPForm.tsx
-    │   ├── IPDetails.tsx
-    │   └── IPMap.tsx
-    ├── context/
-    │   ├── IPContext.tsx
-    │   └── useIP.ts
-    ├── hooks/
-    │   └── useLocalStorage.ts
-    └── types/
-        └── index.ts
+├── src/
+│   ├── main.tsx
+│   ├── App.tsx
+│   ├── pages/
+│   │   └── HomePage.tsx
+│   ├── components/
+│   │   ├── IPForm.tsx
+│   │   ├── IPDetails.tsx
+│   │   └── IPMap.tsx
+│   ├── context/
+│   │   ├── IPContext.tsx
+│   │   └── useIP.ts
+│   ├── hooks/
+│   │   └── useLocalStorage.ts
+│   └── types/
+│       └── index.ts
+└── dist/
+    ├── favicon.png
+    ├── home.png
+    ├── index.html
+    ├── networkError.png
+    ├── searchResults.png
+    ├── vite.svg
+    ├── 404.html
+    └── assets/
+        ├── index-XXXXXX.js
+        └── index-XXXXXX.css
+        (index-XXXXXX.js & index-XXXXXX.css are hashed build files produced by Vite)
 ```
 ---
 
-## 📸 Previews
+<!-- ## 📸 Previews -->
 
 ### Home Page
 ![Home Page](public/home.png)
