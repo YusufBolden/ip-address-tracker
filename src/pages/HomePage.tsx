@@ -78,6 +78,8 @@ const HomePage = () => {
           />
           <circle cx="50" cy="38" r="6" fill="#E7D3AD" />
         </svg>
+            <link rel="icon" href="/favicon.png" />
+
         IP Address Tracker
       </h1>
 

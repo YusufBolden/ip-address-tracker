@@ -4,7 +4,7 @@ import HomePage from './pages/HomePage'
 
 const App = () => {
   return (
-    <BrowserRouter>
+<BrowserRouter basename="/ip-address-tracker">
       <IPProvider>
         <Routes>
           <Route path="/" element={<HomePage />} />
