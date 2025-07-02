@@ -44,7 +44,7 @@ const HomePage = () => {
           timezone: data.time_zone.name,
           lat: parseFloat(data.latitude),
           lng: parseFloat(data.longitude),
-          asn: data.asn || 'Not provided',
+          asn: data.asn || 'Not Provided',
           domain: data.organization || ''
         },
         isp: data.isp || data.organization || 'N/A'
