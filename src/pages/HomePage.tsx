@@ -13,7 +13,7 @@ const HomePage = () => {
   const fetchIPData = useCallback(async (query: string) => {
     try {
       setLoading(true)
-      setError('') // clear any previous
+      setError('')
       const url = query.trim()
         ? `https://api.ipgeolocation.io/ipgeo?apiKey=${import.meta.env.VITE_IP_GEO_KEY}&ip=${query}`
         : `https://api.ipgeolocation.io/ipgeo?apiKey=${import.meta.env.VITE_IP_GEO_KEY}`
@@ -44,7 +44,7 @@ const HomePage = () => {
           timezone: data.time_zone.name,
           lat: parseFloat(data.latitude),
           lng: parseFloat(data.longitude),
-          asn: data.asn || '',
+          asn: data.asn || 'Not provided',
           domain: data.organization || ''
         },
         isp: data.isp || data.organization || 'N/A'
