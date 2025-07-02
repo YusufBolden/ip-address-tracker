@@ -120,18 +120,14 @@ ip-address-tracker/
 
 ## 📸 Previews
 
-<!-- ### Home Page
-![Home Page](public/assets/login.png)
+### Home Page
+![Home Page](public/home.png)
 
-### Blog Index
-![Blog List](public/assets/blogIndex.png)
+### Search Details
+![Search Details](public/searchResults.png)
 
-### Admin Dashboard - upper
-![Admin - upper](public/assets/adminUpper.png)
-
-### Admin Dashboard - lower
-![Admin - lower](public/assets/adminLower.png) -->
-
+### Network Error
+![Network Error](public/networkError.png)
 ---
 
 ## 📝 Reflection Document
