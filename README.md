@@ -173,6 +173,12 @@ As the build matured, attention shifted to micro-interactions and polish easing 
 
   - Enhanced with more dramatic scaling and transition durations.
 
+6. Blank browser rendering (no errors in console, only favicon loaded)
+
+   - This happened because the Vite build output (`index.html`) did not include the proper `<script type="module" src="/assets/index-xxxx.js">` needed to mount the app.  
+
+   - This issue was resolved by manually adding the `<script>` tag into `index.html`, matching the built JavaScript file. This ensured the app would load both locally (served via `npx serve dist`) and on GitHub Pages with the correct base path.
+
 ---
 
 ## 🧑🏿‍💻 Author
