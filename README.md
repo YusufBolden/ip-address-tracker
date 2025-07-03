@@ -12,7 +12,7 @@ IP Address Tracker is a responsive web application built with **React**, **TypeS
 
 ---
 
-🚀 Features
+## 🚀 Features
 
 🌐 IP Geolocation Lookup: Fetches IP address data and displays location, ISP, timezone, and IP.
 
@@ -26,9 +26,7 @@ IP Address Tracker is a responsive web application built with **React**, **TypeS
 
 ♿ Accessible: Follows best practices for keyboard and screen reader navigation.
 
-📍 Distance Calculation: Calculates and displays distance from your initial geolocated position to the searched IP or domain using the Haversine formula.
-
-[The Haversine formula calculates the shortest distance over the Earth’s surface between two points given their latitude and longitude, accounting for the Earth’s spherical shape. It uses trigonometric functions to compute this “great-circle distance” in kilometers or miles. This is ideal for finding real-world travel distances between geographic coordinates.]
+📍 Distance Calculation: Calculates and displays distance from your initial geolocated position to the searched IP or domain using the Haversine formula, which calculates the shortest distance over the Earth’s surface between two points given their latitude and longitude, accounting for the Earth’s spherical shape. It uses trigonometric functions to compute this “great-circle distance” in kilometers or miles. This is ideal for finding real-world travel distances between geographic coordinates.
 
 🚨 Inline Error Messaging: Provides user-friendly inline error messages for invalid IPs, failed lookups, or unresolvable domains.
 ---
