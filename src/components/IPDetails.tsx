@@ -1,10 +1,29 @@
 import { useIP } from '../context/useIP'
 
-const IPDetails = () => {
+const haversine = (lat1: number, lon1: number, lat2: number, lon2: number) => {
+  const toRad = (value: number) => (value * Math.PI) / 180
+  const R = 6371 // Earth radius in km
+  const dLat = toRad(lat2 - lat1)
+  const dLon = toRad(lon2 - lon1)
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+    Math.sin(dLon / 2) ** 2
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+}
+
+const IPDetails = ({ initialCoords }: { initialCoords: [number, number] | null }) => {
   const { ipData } = useIP()
 
   if (!ipData) {
     return <p className="mt-4 text-[#E7D3AD]/80">No data loaded.</p>
+  }
+
+  let distanceKm = null
+  let distanceMiles = null
+  if (initialCoords) {
+    distanceKm = haversine(initialCoords[0], initialCoords[1], ipData.location.lat, ipData.location.lng)
+    distanceMiles = distanceKm * 0.621371
   }
 
   return (
@@ -16,6 +35,13 @@ const IPDetails = () => {
       <p><span className="font-semibold text-[#5BC0EB]">ISP:</span> {ipData.isp}</p>
       <p><span className="font-semibold text-[#5BC0EB]">ASN:</span> {ipData.location.asn}</p>
       <p><span className="font-semibold text-[#5BC0EB]">Domain:</span> {ipData.location.domain}</p>
+      {distanceKm !== null && distanceMiles !== null && (
+        <p>
+          <span className="font-semibold text-[#5BC0EB]">Distance from initial location:</span>
+          {' '}
+          {distanceMiles.toFixed(2)} mi ({distanceKm.toFixed(2)} km)
+        </p>
+      )}
     </div>
   )
 }

@@ -1,6 +1,4 @@
-import type { ReactNode } from 'react'
-
-export type IPData = {
+export interface IPData {
   ip: string
   location: {
     continent: string
@@ -17,19 +15,15 @@ export type IPData = {
   isp: string
 }
 
-export type IPProviderProps = {
-  children: ReactNode
-}
-
-export type IPContextType = {
+export interface IPContextType {
   ipData: IPData | null
-  setIPData: (data: IPData) => void
+  setIPData: (data: IPData | null) => void
 }
 
-export type IPFormProps = {
-  onSearch: (query: string) => void
+export interface IPProviderProps {
+  children: React.ReactNode
 }
-export interface RecentSearchesProps {
-  recent: string[]
+
+export interface IPFormProps {
   onSearch: (query: string) => void
 }
