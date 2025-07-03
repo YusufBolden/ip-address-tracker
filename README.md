@@ -179,6 +179,32 @@ As the build matured, attention shifted to micro-interactions and polish easing 
 
    - This issue was resolved by manually adding the `<script>` tag into `index.html`, matching the built JavaScript file. This ensured the app would load both locally (served via `npx serve dist`) and on GitHub Pages with the correct base path.
 
+7. Blank render, invalid lookups, and inconsistent API responses
+
+    Error:
+
+      - The app initially rendered a blank page due to missing built assets and improperly injected scripts in index.html after Vite build.
+
+      - Later, domain inputs returned home location data or no error at all because ipwho.is does not directly accept domain names as ip queries. ipwho.is needs an explicit domain param, which still did not always resolve reliably.
+
+      - Bad inputs would silently fail and fall back to home location without clear errors.
+
+    Why it took long to resolve:
+
+      - Required multiple rounds of changing API approaches, first attempting to switch to ipgeolocation.io, then back to ipwho.is with domain support.
+
+      - Resolving valid domains needed adding a dns.google lookup step to convert domains to IPs before sending to ipwho.is.
+
+    How it was fixed:
+
+      - Integrated Google’s DNS over HTTPS API to resolve domains to IP addresses before fetching geo data.
+
+      - Ensured robust client-side regex/IP checks, consistent error messages, and fallback logic for distance calculations.
+
+      - Added clean UI error alerts for all invalid inputs.
+
+      - Ensured all valid IPs/domains update map, details, and distance calculation correctly.
+
 ---
 
 ## 🧑🏿‍💻 Author
