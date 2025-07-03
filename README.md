@@ -24,7 +24,7 @@ IP Address Tracker is a responsive web application built with **React**, **TypeS
 ---
 
 ## 🚢 Live Deployment
-Coming soon..
+[View live on GH Pages](https://yusufbolden.github.io/ip-address-tracker/)
 
 ## 🚀 Local Setup & Tailwind CSS Installation
 
